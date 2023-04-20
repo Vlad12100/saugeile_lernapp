@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "290050221857",
+    "project_id": "words-111eb",
+    "storage_bucket": "words-111eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290050221857:android:5e76243326cf7f15370060",
+        "android_client_info": {
+          "package_name": "com.example.sqlliteteste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290050221857-ohm5963nsp39gta3fk4s3hu5rgudglh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7zM_MwfoHzBsmAw-9XqRk1TbZO2QgFvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290050221857-ohm5963nsp39gta3fk4s3hu5rgudglh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
