@@ -30,6 +30,7 @@ class _WordListPageState extends State<WordListPage> {
             return const Text("Datenbank sagt NÖ 🐒");
           } else if (snapshot.hasData) {
             final words = snapshot.data;
+            words!.sort((a, b) => a.trans.toLowerCase().compareTo(b.trans.toLowerCase()));
             final length = words?.length ?? 0;
             return ListView.builder(
                 itemCount: length,
@@ -44,7 +45,8 @@ class _WordListPageState extends State<WordListPage> {
                             onPressed: ((context) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => UpdateWord(word)),
+                                MaterialPageRoute(
+                                    builder: (context) => UpdateWord(word)),
                               );
                             }),
                             icon: Icons.create,
@@ -65,7 +67,8 @@ class _WordListPageState extends State<WordListPage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: const Color(0xFF2A2A2A)),
-                        margin: const EdgeInsets.only(top: 5, left: 5, right: 5),
+                        margin:
+                            const EdgeInsets.only(top: 5, left: 5, right: 5),
                         width: double.infinity,
                         height: 70,
                         child: Column(
@@ -81,7 +84,7 @@ class _WordListPageState extends State<WordListPage> {
                                   ),
                                   Flexible(
                                     child: Text(
-                                      word.term,
+                                      word.trans,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
@@ -106,7 +109,7 @@ class _WordListPageState extends State<WordListPage> {
                                   ),
                                   Flexible(
                                       child: Text(
-                                    word.trans,
+                                    word.term,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
@@ -144,4 +147,3 @@ class _WordListPageState extends State<WordListPage> {
     );
   }
 }
-
