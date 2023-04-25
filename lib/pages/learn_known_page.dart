@@ -98,7 +98,7 @@ class _LearnKnownPageState extends State<LearnKnownPage>
                             _currentPageIndex =
                                 (_currentPageIndex! - 1) % length;
                             _pageController.jumpToPage(_currentPageIndex!);
-                            markWordAsKnownAndSetTimer(word.id);
+                            //markWordAsKnownAndSetTimer(word.id);
                           } else if (_offsetX > 140) {
                             if(word.repetitions > 3){
                               updateWordToLvl3(word.id);

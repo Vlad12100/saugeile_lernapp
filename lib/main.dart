@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App für die Sau 🐖',
       theme: ThemeData(
-        pageTransitionsTheme: PageTransitionsTheme(builders: {
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
           TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
           TargetPlatform.android: CupertinoPageTransitionsBuilder(),
         }),
@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 
@@ -88,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> pages = const <Widget>[];
 
   int index = 0;
-  final screens = [HomePage(), WordListPage()];
+  final screens = [const HomePage(), const WordListPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontSize: 14, fontWeight: FontWeight.w400))),
               child: NavigationBar(
                 height: 60,
-                backgroundColor: Color(0xFF414142),
+                backgroundColor: const Color(0xFF414142),
                 selectedIndex: index,
                 onDestinationSelected: (index) =>
                     setState(() => this.index = index),
