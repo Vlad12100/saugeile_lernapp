@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlliteteste/pages/learn_known_page.dart';
 import 'package:sqlliteteste/pages/learn_page.dart';
+import 'package:sqlliteteste/pages/pig_page.dart';
 import 'package:sqlliteteste/pages/word_write_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +27,9 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            Container(
+            Flexible(
+              flex: 1,
+              child: Container(
               width: MediaQuery.of(context).size.width,
               height: 330,
               margin: const EdgeInsets.only(top: 5, right: 6, left: 6),
@@ -62,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "Neue Wörter lernen",
                               style:
-                                  TextStyle(fontSize: 25, letterSpacing: 1.0),
+                              TextStyle(fontSize: 25, letterSpacing: 1.0),
                             ),
                           ],
                         ),
@@ -72,8 +75,12 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 5, right: 5, left: 5),
-                      decoration: const BoxDecoration(color: Color(0xFF2A2A2A)),
+                      margin: const EdgeInsets.only(top: 5, right: 5, left: 5, bottom: 5),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(25),
+                              bottomRight: Radius.circular(25)),
+                          color: Color(0xFF2A2A2A)),
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
@@ -91,51 +98,63 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "Wörter wiederholen",
                               style:
-                                  TextStyle(fontSize: 25, letterSpacing: 1.0),
+                              TextStyle(fontSize: 25, letterSpacing: 1.0),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                          top: 5, right: 5, left: 5, bottom: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(25),
-                              bottomRight: Radius.circular(25)),
-                          color: Color(0xFF2A2A2A)),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const WordWritePage()),
-                          );
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            SizedBox(width: 20),
-                            Icon(Icons.spellcheck, size: 30),
-                            SizedBox(width: 20),
-                            Text(
-                              "Schreiben",
-                              style:
-                                  TextStyle(fontSize: 25, letterSpacing: 1.0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
+                  // Expanded(
+                  //   flex: 1,
+                  //   child: Container(
+                  //     margin: const EdgeInsets.only(
+                  //         top: 5, right: 5, left: 5, bottom: 5),
+                  //     decoration: const BoxDecoration(
+                  //         borderRadius: BorderRadius.only(
+                  //             bottomLeft: Radius.circular(25),
+                  //             bottomRight: Radius.circular(25)),
+                  //         color: Color(0xFF2A2A2A)),
+                  //     child: InkWell(
+                  //       onTap: () {
+                  //         Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => const WordWritePage()),
+                  //         );
+                  //       },
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.start,
+                  //         children: const [
+                  //           SizedBox(width: 20),
+                  //           Icon(Icons.spellcheck, size: 30),
+                  //           SizedBox(width: 20),
+                  //           Text(
+                  //             "Schreiben",
+                  //             style:
+                  //                 TextStyle(fontSize: 25, letterSpacing: 1.0),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
-            ),
-            Flexible(child: Image.asset('assets/images/waddles.png'))
+            ),),
+            Flexible(
+                flex: 2,
+                child: InkWell(
+                  onDoubleTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PigPage()),
+                    );
+                  },
+                  child: Image.asset('assets/images/waddles.png'),
+                )
+            )
           ],
         ));
   }

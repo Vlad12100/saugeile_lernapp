@@ -24,6 +24,9 @@ class _WordListPageState extends State<WordListPage> {
     return Scaffold(
       appBar: AppBar(
           title: CupertinoSearchTextField(
+            style: const TextStyle(
+              color: Colors.white
+            ),
             onChanged: (value) {
               setState(() {
                 textFieldValue = value;

@@ -198,10 +198,10 @@ class _LearnPageState extends State<LearnPage>
                                                                             FlipDirection.HORIZONTAL,
                                                                         front: FlipCardCustom(
                                                                             context,
-                                                                            word.trans),
+                                                                            word.trans, word),
                                                                         back: FlipCardCustom(
                                                                             context,
-                                                                            word.term),
+                                                                            word.term, word),
                                                                       ),
                                                                     ),
                                                                   ),

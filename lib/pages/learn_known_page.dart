@@ -174,8 +174,8 @@ class _LearnKnownPageState extends State<LearnKnownPage>
                                                                   child: FlipCard(
                                                                     speed: 400,
                                                                     direction: FlipDirection.HORIZONTAL,
-                                                                    front: FlipCardCustom(context, word.trans),
-                                                                    back: FlipCardCustom(context, word.term),
+                                                                    front: FlipCardCustom(context, word.trans, word),
+                                                                    back: FlipCardCustom(context, word.term, word),
                                                                   ),
                                                                 ),
                                                               ),
