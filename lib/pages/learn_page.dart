@@ -79,7 +79,8 @@ class _LearnPageState extends State<LearnPage>
                     },
                     controller: _pageController,
                     itemBuilder: (context, index) {
-                      final word = words![index % length];
+                      words!.where((element) => element.isKnown == false).toList();
+                      final word = words[index % length];
                       return GestureDetector(
                           onPanUpdate: (details) {
                             setState(() {

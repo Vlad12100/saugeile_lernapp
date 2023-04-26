@@ -27,7 +27,7 @@ class _UpdateWordState extends State<UpdateWord> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Neues Wort Hinzufügen"),
+          title: const Text("Wort bearbeiten"),
         ),
         body: SingleChildScrollView(
             child: Column(
@@ -103,7 +103,7 @@ class _UpdateWordState extends State<UpdateWord> {
                     child: RawMaterialButton(
                       shape: const CircleBorder(),
                       elevation: 0.0,
-                      child: const Text("Hinzufügen",  style: TextStyle(
+                      child: const Text("Bearbeiten",  style: TextStyle(
                         fontSize: 25.0,
                         fontWeight: FontWeight.normal,),),
                       onPressed: (){

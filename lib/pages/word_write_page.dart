@@ -11,7 +11,6 @@ class WordWritePage extends StatefulWidget {
 class _WordWritePageState extends State<WordWritePage>
     with SingleTickerProviderStateMixin {
   PageController pageController = PageController(initialPage: 0);
-  PageStorageBucket _bucket = PageStorageBucket();
   var pageStrKey = const PageStorageKey(["List_Page"]);
   final controller = TextEditingController();
   bool _enabled = false;
@@ -283,7 +282,7 @@ class _WordWritePageState extends State<WordWritePage>
                                             onSubmit(
                                                 controller.text, word.term);
                                             FocusScope.of(context)
-                                                .requestFocus(new FocusNode());
+                                                .requestFocus(FocusNode());
                                           },
                                           child: Container(
                                             height: 50,
