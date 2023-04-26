@@ -98,7 +98,7 @@ class _LearnKnownPageState extends State<LearnKnownPage>
                             _currentPageIndex =
                                 (_currentPageIndex! - 1) % length;
                             _pageController.jumpToPage(_currentPageIndex!);
-                            markWordAsKnownAndSetTimer(word.id);
+                            //markWordAsKnownAndSetTimer(word.id);
                           } else if (_offsetX > 140) {
                             if(word.repetitions > 3){
                               updateWordToLvl3(word.id);
@@ -156,7 +156,7 @@ class _LearnKnownPageState extends State<LearnKnownPage>
                                                                         fontWeight: FontWeight.bold,
                                                                       ),),
                                                                       Text(
-                                                                        'Card ${(index) % words.length + 1} of ${words.length}',
+                                                                        'Cards ${words.length}',
                                                                         style: const TextStyle(
                                                                           fontSize: 16.0,
                                                                           fontWeight: FontWeight.bold,
