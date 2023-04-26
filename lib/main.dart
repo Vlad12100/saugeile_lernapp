@@ -36,54 +36,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-
-// final controllerTerm = TextEditingController();
-// final controllerTrans = TextEditingController();
-//
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('sqflite'),
-//       ),
-//       body: ListView(
-//         padding: EdgeInsets.all(16),
-//         children: <Widget>[
-//           TextField(
-//             controller: controllerTerm,
-//             decoration: InputDecoration(
-//                 hintText: "Deutsches Wort...",
-//                 hintStyle: TextStyle(
-//                     color: Colors.purple,
-//                     fontStyle: FontStyle.italic
-//                 )
-//             ),
-//           ),
-//           TextField(
-//             controller: controllerTrans,
-//             decoration: InputDecoration(
-//                 hintText: "Übersetzung...",
-//                 hintStyle: TextStyle(
-//                     color: Colors.purple,
-//                     fontStyle: FontStyle.italic
-//                 )
-//             ),
-//           ),
-//           SizedBox(
-//             height: 50,
-//           ),
-//           ElevatedButton(
-//               onPressed: () {},
-//               child: Text("SEND")
-//           ),
-//           Container(
-//             height: 300,
-//             width: 200,
-//           )
-//         ],
-//       ),
-//   );
-// }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -95,11 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.black12,
-        //   title: const Text("Vokabel lern App"),
-        //   elevation: 5,
-        // ),
         body: Scaffold(
             body: screens[index],
             bottomNavigationBar: NavigationBarTheme(

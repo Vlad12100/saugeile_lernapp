@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sqlliteteste/data/spaced_rep_words.dart';
 import 'package:sqlliteteste/pages/add_word.dart';
-import 'package:sqlliteteste/pages/update_word.dart';
+
+import '../util/list_view_custom.dart';
 
 class WordListPage extends StatefulWidget {
   const WordListPage({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class WordListPage extends StatefulWidget {
 }
 
 class _WordListPageState extends State<WordListPage> {
+  String textFieldValue = "";
   @override
   void initState() {
     super.initState();
@@ -21,7 +23,13 @@ class _WordListPageState extends State<WordListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Liste aller Wörter"),
+          title: CupertinoSearchTextField(
+            onChanged: (value) {
+              setState(() {
+                textFieldValue = value;
+              });
+            },
+          )
       ),
       body: StreamBuilder<List<WordSpaced>>(
         stream: getWordsForList(),
@@ -36,93 +44,13 @@ class _WordListPageState extends State<WordListPage> {
                 itemCount: length,
                 itemBuilder: (BuildContext context, int index) {
                   final word = words![index % length];
-                  return Slidable(
-                      endActionPane: ActionPane(
-                        extentRatio: 0.4,
-                        motion: const StretchMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: ((context) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UpdateWord(word)),
-                              );
-                            }),
-                            icon: Icons.create,
-                            backgroundColor: Colors.blue.shade300,
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          SlidableAction(
-                            onPressed: ((context) {
-                              deleteWordFromFirebase(word.id);
-                            }),
-                            icon: Icons.delete,
-                            backgroundColor: Colors.red.shade300,
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                        ],
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: const Color(0xFF2A2A2A)),
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 5, right: 5),
-                        width: double.infinity,
-                        height: 70,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              height: 35,
-                              width: double.infinity,
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      word.trans,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 35,
-                              width: double.infinity,
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
-                                  Flexible(
-                                      child: Text(
-                                    word.term,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ))
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ));
+                  if(textFieldValue.isEmpty) {
+                    return ListViewCustom(word);
+                  }
+                  if(word.trans.toLowerCase().contains(textFieldValue.toLowerCase())) {
+                    return ListViewCustom(word);
+                  }
+                  return Container();
                 });
           } else {
             return const Center(
