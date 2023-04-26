@@ -19,6 +19,7 @@ class _WordWritePageState extends State<WordWritePage>
   int hitHintCounter = 0;
   int correctLetters = 0;
   bool isvalid = false;
+  bool rightColor = false;
 
   @override
   void initState() {
@@ -72,6 +73,7 @@ class _WordWritePageState extends State<WordWritePage>
 
   void onSubmit(String textField, String word) {
     if (textField.toLowerCase() == word.toLowerCase()) {
+      rightColor = !rightColor;
       makeNextButtonVisable();
     } else {
       setState(() {
@@ -96,7 +98,7 @@ class _WordWritePageState extends State<WordWritePage>
       body: Padding(
         padding: const EdgeInsets.all(0),
         child: StreamBuilder(
-          stream: getWordsForUnknown(),
+          stream: getWordsForList(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
@@ -146,12 +148,12 @@ class _WordWritePageState extends State<WordWritePage>
                                   flex: 1,
                                   child: Column(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 50,
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.only(left: 5, right: 5),
+                                            const EdgeInsets.only(left: 5, right: 5),
                                         child: Text(
                                           word.trans,
                                           textAlign: TextAlign.center,
@@ -168,11 +170,11 @@ class _WordWritePageState extends State<WordWritePage>
                                   flex: 1,
                                   child: Column(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 30, right: 30),
                                         child: TextField(
                                             controller: controller,
@@ -185,19 +187,23 @@ class _WordWritePageState extends State<WordWritePage>
                                               onSubmit(value, word.term);
                                             },
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 25),
+                                            style: const TextStyle(
+                                                fontSize: 25),
                                             textInputAction:
                                                 TextInputAction.done,
                                             decoration: InputDecoration(
+                                                enabledBorder: UnderlineInputBorder(
+                                                  borderSide: BorderSide(width: 1.5, color: rightColor ? Colors.green : Colors.grey),
+                                                ),
                                                 errorText: isvalid
                                                     ? "NÖ! Versuch's nochmal"
                                                     : null)),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 30, right: 30),
                                           child: Row(
                                             mainAxisAlignment:
@@ -207,7 +213,6 @@ class _WordWritePageState extends State<WordWritePage>
                                                 borderRadius:
                                                     BorderRadius.circular(25),
                                                 onTap: () {
-                                                  print("HINT");
                                                   compareWordAndTextField(
                                                       controller.text,
                                                       word.term);
@@ -220,7 +225,7 @@ class _WordWritePageState extends State<WordWritePage>
                                                           BorderRadius.circular(
                                                               25),
                                                       color: Colors.grey),
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Icon(
                                                     Icons.lightbulb_outlined,
                                                     color: Colors.black,
@@ -228,14 +233,13 @@ class _WordWritePageState extends State<WordWritePage>
                                                   )),
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 20,
                                               ),
                                               InkWell(
                                                 borderRadius:
                                                     BorderRadius.circular(25),
                                                 onTap: () {
-                                                  print("SOLUTION");
                                                   setState(() {
                                                     isvalid = false;
                                                     showNextButton(word.term);
@@ -249,7 +253,7 @@ class _WordWritePageState extends State<WordWritePage>
                                                           BorderRadius.circular(
                                                               25),
                                                       color: Colors.grey),
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Icon(
                                                     Icons
                                                         .question_mark_outlined,
@@ -270,7 +274,7 @@ class _WordWritePageState extends State<WordWritePage>
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 15, right: 15),
                                         child: InkWell(
                                           borderRadius:
@@ -287,7 +291,7 @@ class _WordWritePageState extends State<WordWritePage>
                                                 borderRadius:
                                                     BorderRadius.circular(25),
                                                 color: Colors.grey),
-                                            child: Center(
+                                            child: const Center(
                                               child: Text("SUBMIT",
                                                   style: TextStyle(
                                                       color: Colors.black)),
@@ -296,7 +300,7 @@ class _WordWritePageState extends State<WordWritePage>
                                         ),
                                       ),
                                       Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 15, right: 15),
                                           child: Opacity(
                                             opacity: nextButtonOpacity,
@@ -308,7 +312,7 @@ class _WordWritePageState extends State<WordWritePage>
                                                   ? () {
                                                       controller.clear();
                                                       pageController.nextPage(
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               microseconds:
                                                                   300),
                                                           curve: Curves.linear);
@@ -324,7 +328,7 @@ class _WordWritePageState extends State<WordWritePage>
                                                         BorderRadius.circular(
                                                             25),
                                                     color: Colors.green),
-                                                child: Center(
+                                                child: const Center(
                                                   child: Text("NEXT PAGE",
                                                       style: TextStyle(
                                                           color: Colors.black)),
